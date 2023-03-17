@@ -27,13 +27,13 @@ def main():
     for i, opt in enumerate(trainer.pokemon_list): 
         print(i, ':', opt)
     choice = int(input('Choose option:'))
-    attacker = trainer.pokemon_list[choice].name
+    attacker = trainer.pokemon_list[choice]
 
     print('Chooose one Pokemon move:')
     for i, opt in enumerate(attacker.moves): 
         print(i, ':', opt)
     choice = int(input('Choose option:'))
-    move = attacker.moves[choice].name
+    move = attacker.moves[choice]
     print(str(move.current_pp))
 
     print('compare un Charmander selvatico')
