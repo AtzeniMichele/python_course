@@ -22,6 +22,7 @@ class Pokemon:
             defender.current_hp = defender.current_hp - damage
             ## se arriva a 0? rip 
             print(defender.current_hp)
+            attackType.current_pp = attackType.current_pp - 1
 
             
 
@@ -52,12 +53,12 @@ class Pokemon:
 
 class Bulbasaur(Pokemon): 
     def __init__(self):
-        super().__init__('bulbasaur', 1, ["grass","poison"],{"hp": 45, "attack": 49, "defense": 49, "speed": 45, "special": 65},  ["tackle", "razor leaf"], 45, 1)
+        super().__init__('bulbasaur', 1, ["grass","poison"],{"hp": 45, "attack": 49, "defense": 49, "speed": 45, "special": 65},  [Tackle(), RazorLeaf()], 45, 1)
 
 class Charmander(Pokemon): 
     def __init__(self):
-        super().__init__('charmander', 1, ['fire'], {"hp": 39, "attack": 52, "defense": 43, "speed": 65, "special": 50}, ["tackle", "ember"], 39, 4)
+        super().__init__('charmander', 1, ['fire'], {"hp": 39, "attack": 52, "defense": 43, "speed": 65, "special": 50}, [Tackle(), Ember()], 39, 4)
 
 class Squirtle(Pokemon):
     def __init__(self):
-        super().__init__('squirtle', 1, ["water"],{"hp": 44, "attack": 48, "defense": 65, "speed": 43, "special": 50}, ["tackle", "water gun"], 44, 7)
+        super().__init__('squirtle', 1, ["water"],{"hp": 44, "attack": 48, "defense": 65, "speed": 43, "special": 50}, [Tackle(), WaterGun()], 44, 7)

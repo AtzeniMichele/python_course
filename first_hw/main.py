@@ -11,7 +11,6 @@ def main():
     print('Welcome ' + trainer.name)
 
     options = ['Bulbasaur', 'Charmender', 'Squirtle']
-    trainers_pokemon = []
     print('Chooose one Pokemon among:')
     for i, opt in enumerate(options): 
         print(i, ':', opt)
@@ -22,18 +21,30 @@ def main():
     trainer.addPokemon(pokemon)
 
     ## TODO: confrontare velocità per chi attacca per primo 
-    # TODO: che pokemon scegliere
-    # TODO: che mossa scegliere
-    # TODO: aggiornare i pp
     # TODO: continuare lo script 
+
+    print('Chooose one Pokemon attacker:')
+    for i, opt in enumerate(trainer.pokemon_list): 
+        print(i, ':', opt)
+    choice = int(input('Choose option:'))
+    attacker = trainer.pokemon_list[choice].name
+
+    print('Chooose one Pokemon move:')
+    for i, opt in enumerate(attacker.moves): 
+        print(i, ':', opt)
+    choice = int(input('Choose option:'))
+    move = attacker.moves[choice].name
+    print(str(move.current_pp))
+
+    print('compare un Charmander selvatico')
 
     ## case 1: 
     # noi attacchiamo 
     print('trainer attack')
     defender = Charmander()
-    attacker = trainer.pokemon_list[0]
 
-    attacker.useMove(Tackle(), defender)
+    attacker.useMove(move, defender)
+    print(str(move.current_pp))
 
     ## case 2: 
     # noi difendiamo 
