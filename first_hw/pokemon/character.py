@@ -12,17 +12,25 @@ class Pokemon:
         self.national_pokedex_number = national_pokedex_number
 
     def useMove(self, attackType, defender):
-        rnd = random.random()
-        success = rnd < attackType.accuracy
-        print(defender.current_hp)
-        if success:
-            print('successfully attacking' + str(rnd) +'<'+ str(attackType.accuracy))
-            damage = self.computeDamage(attackType,defender,rnd)
-            print(str(damage))
-            defender.current_hp = defender.current_hp - damage
-            ## se arriva a 0? rip 
-            print(defender.current_hp)
-            attackType.current_pp = attackType.current_pp - 1
+        if attackType.current_pp > 0: 
+            rnd = random.random()
+            success = rnd < attackType.accuracy
+            if success:
+                print('successfully attacking!')
+                damage = self.computeDamage(attackType,defender,rnd)
+                
+                defender.current_hp = defender.current_hp - damage
+                attackType.current_pp = attackType.current_pp - 1
+                ## se arriva a 0? rip 
+                if defender.current_hp <= 0:
+                    print('The attack hits ' + str(damage) + ', ' + defender.name + ' is defeated!')
+                    return False
+                else: 
+                    print('The attack hits ' + str(damage) + ', ' + defender.name + ' current hps are:' + str(defender.current_hp))
+                    return True
+                
+        else: 
+            print('this move cannot be used anymore!')
 
             
 

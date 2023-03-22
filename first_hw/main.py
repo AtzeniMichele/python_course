@@ -15,41 +15,43 @@ def main():
     for i, opt in enumerate(options): 
         print(i, ':', opt)
     choice = int(input('Choose option:'))
-    ## TODO: comparare nome e poi trasformare in indice -> not in o in
 
     pokemon = options[choice]
     trainer.addPokemon(pokemon)
 
     ## TODO: confrontare velocità per chi attacca per primo 
-    # TODO: continuare lo script 
 
-    print('Chooose one Pokemon attacker:')
-    for i, opt in enumerate(trainer.pokemon_list): 
-        print(i, ':', opt)
-    choice = int(input('Choose option:'))
-    attacker = trainer.pokemon_list[choice]
+    forward = True; 
 
-    print('Chooose one Pokemon move:')
-    for i, opt in enumerate(attacker.moves): 
-        print(i, ':', opt)
-    choice = int(input('Choose option:'))
-    move = attacker.moves[choice]
-    print(str(move.current_pp))
+    while(forward): 
 
-    print('compare un Charmander selvatico')
+        print('compare un Charmander selvatico')
 
-    ## case 1: 
-    # noi attacchiamo 
-    print('trainer attack')
-    defender = Charmander()
+        print('Chooose one Pokemon attacker:')
+        for i, opt in enumerate(trainer.pokemon_list): 
+            print(i, ':', opt.name)
+        choice = int(input('Choose option:'))
+        attacker = trainer.pokemon_list[choice]
 
-    attacker.useMove(move, defender)
-    print(str(move.current_pp))
+        print('Chooose one Pokemon move:')
+        for i, opt in enumerate(attacker.moves): 
+            print(i, ':', opt.name)
+        choice = int(input('Choose option:'))
+        move = attacker.moves[choice]
+        print(str(move.current_pp))
 
-    ## case 2: 
-    # noi difendiamo 
-    print('defender attack')
-    defender.useMove(Ember(), attacker)
+        ## case 1: 
+        # noi attacchiamo 
+        print('trainer attack')
+        defender = Charmander()
+
+        forward = attacker.useMove(move, defender)
+        print(str(move.current_pp))
+
+        ## case 2: 
+        # noi difendiamo 
+        print('defender attack')
+        forward = defender.useMove(Ember(), attacker)
 
 
 
