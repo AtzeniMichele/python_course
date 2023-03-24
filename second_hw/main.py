@@ -1,48 +1,29 @@
-from engine.enginePokemon import CreateCharacter, Story
+from engine.story import *
+from engine.create_character import *
 from engine.state_machine import FiniteStateMachine
 from pokemon.trainer import *
 from pokemon.character import *
 
 
 def main():
-    # trainer = Trainer('', [])
-    # # name
-    # print('create your pokemon trainer')
-    # nickname = input()
-    # trainer.addName(nickname)
-    # print('Welcome ' + trainer.name)
-    #
-    # options = ['Bulbasaur', 'Charmender', 'Squirtle']
-    # print('Chooose one Pokemon among:')
-    # for i, opt in enumerate(options):
-    #     print(i, ':', opt)
-    # choice = int(input('Choose option:'))
-    #
-    # pokemon = options[choice]
-    # trainer.addPokemon(pokemon)
-    #
-    # ## aggiungere items:
-    # trainer.addFullItems()
-    # print('added 10 potions and 10 pokeballs!')
+    # init machine
+    machine = FiniteStateMachine()
+    machine.add_state(cc, trainer=Trainer('', []))
+    machine.add_state(story)
+    machine.add_transition(cc, story)
+    machine.set_start_state(cc)
+    machine.initialize()
 
-    Machine = FiniteStateMachine()
+    # machine.draw()
 
-    Machine.add_state(cc)
-    Machine.add_state(story)
+    # create character
+    machine.eval_current(machine.get_state_attributes('trainer'))
 
-    Machine.add_transition(cc, story)
-
-    Machine.set_start_state(cc)
-
-    Machine.initialize()
-    Machine.draw()
-
-    cc.run()
-    target = Machine.update()
-    story.run()
-    Machine.draw()
-
-    Machine.do_transition(target, Machine.get_transition_attributes(target, 'dur'))
+    # go in the main story
+    story.trainer = machine.get_state_attributes('trainer')
+    machine.do_transition(story)
+    machine.eval_current()
+    # machine.draw()
 
     forward = True;
 
