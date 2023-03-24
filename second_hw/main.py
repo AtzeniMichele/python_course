@@ -76,10 +76,11 @@ def main():
                 battle.trainer = story.trainer
                 machine.do_transition(battle)
                 machine.eval_current()
-
-            else:
-                # return to the story
-                machine.do_transition(story)
+                if battle.defeated:
+                    pokemonCenter.trainer = battle.trainer
+                    machine.do_transition(pokemonCenter)
+                    machine.eval_current(machine.get_state_attributes('name'))
+            machine.do_transition(story)
             #machine.draw()
         elif choice == 3:
             machine.do_transition(close)

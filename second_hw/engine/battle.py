@@ -5,6 +5,7 @@ from pokemon.character import Charmander
 
 class Battle(State):
     trainer = None
+    defeated = False
 
     def run(self, *args):
         forward = True
@@ -32,10 +33,13 @@ class Battle(State):
             forward = attacker.useMove(move, defender)
             print(str(move.current_pp))
 
-            ## case 2:
-            # noi difendiamo
-            print('defender attack')
-            forward = defender.useMove(Ember(), attacker)
+            if forward:
+                ## case 2:
+                # noi difendiamo
+                print('defender attack')
+                forward = defender.useMove(Ember(), attacker)
+                if not forward:
+                    self.defeated = True
 
 
     def update(self):
