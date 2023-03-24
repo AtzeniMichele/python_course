@@ -2,10 +2,12 @@ from engine.story import *
 from engine.create_character import *
 from engine.actions import *
 from engine.battle import *
+from engine.exit import *
 from pokemon.trainer import *
 
 
 def main():
+    forward = True;
     # init machine
     machine = FiniteStateMachine()
     machine.add_state(cc, trainer=Trainer('', []))
@@ -14,6 +16,7 @@ def main():
     machine.add_state(pokemonCenter, name='Pokemon Center')
     machine.add_state(explore, name='Explore')
     machine.add_state(battle, name='Battle')
+    machine.add_state(close)
 
     machine.add_transition(cc, story)
     machine.add_transition(story, pokemonStore)
@@ -25,6 +28,7 @@ def main():
     machine.add_transition(explore, battle)
     machine.add_transition(battle, story)
     machine.add_transition(battle, pokemonCenter)
+    machine.add_transition(story, close)
 
     machine.set_start_state(cc)
     machine.initialize()
@@ -40,30 +44,41 @@ def main():
     machine.eval_current()
     #machine.draw()
 
-    # actions
-    action_input = ['Go to pokemon store', 'Go to pokemon center', 'Explore']
-    print('What do you want to do?:')
-    for i, opt in enumerate(action_input):
-        print(i, ':', opt)
-    choice = int(input('Choose option:'))
+    while forward:
 
-    if choice == 0:
-        pokemonStore.trainer = story.trainer
-        machine.do_transition(pokemonStore)
-        machine.eval_current(machine.get_state_attributes('name'))
-        #machine.draw()
-    elif choice == 1:
-        pokemonCenter.trainer = story.trainer
-        machine.do_transition(pokemonCenter)
-        machine.eval_current(machine.get_state_attributes('name'))
-        #machine.draw()
-    elif choice == 2:
-        explore.trainer = story.trainer
-        machine.do_transition(explore)
-        machine.eval_current(machine.get_state_attributes('name'))
-        #machine.draw()
+        # actions
+        action_input = ['Go to pokemon store', 'Go to pokemon center', 'Explore', 'Exit']
+        print('What do you want to do?:')
+        for i, opt in enumerate(action_input):
+            print(i, ':', opt)
+        choice = int(input('Choose option:'))
 
-    forward = True;
+        if choice == 0:
+            pokemonStore.trainer = story.trainer
+            machine.do_transition(pokemonStore)
+            machine.eval_current(machine.get_state_attributes('name'))
+            # return to the story
+            machine.do_transition(story)
+            #machine.draw()
+        elif choice == 1:
+            pokemonCenter.trainer = story.trainer
+            machine.do_transition(pokemonCenter)
+            machine.eval_current(machine.get_state_attributes('name'))
+            # return to the story
+            machine.do_transition(story)
+
+            #machine.draw()
+        elif choice == 2:
+            explore.trainer = story.trainer
+            machine.do_transition(explore)
+            machine.eval_current(machine.get_state_attributes('name'))
+            # return to the story
+            machine.do_transition(story)
+            #machine.draw()
+        elif choice == 3:
+            machine.do_transition(close)
+            machine.eval_current()
+            #machine.draw()
 
     # while forward:
     #
