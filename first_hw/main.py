@@ -22,6 +22,7 @@ def main():
     ## TODO: confrontare velocità per chi attacca per primo 
 
     forward = True; 
+    defender = Charmander()
 
     while(forward): 
 
@@ -43,7 +44,6 @@ def main():
         ## case 1: 
         # noi attacchiamo 
         print('trainer attack')
-        defender = Charmander()
 
         forward = attacker.useMove(move, defender)
         print(str(move.current_pp))
