@@ -72,8 +72,14 @@ def main():
             explore.trainer = story.trainer
             machine.do_transition(explore)
             machine.eval_current(machine.get_state_attributes('name'))
-            # return to the story
-            machine.do_transition(story)
+            if explore.battle:
+                battle.trainer = story.trainer
+                machine.do_transition(battle)
+                machine.eval_current()
+
+            else:
+                # return to the story
+                machine.do_transition(story)
             #machine.draw()
         elif choice == 3:
             machine.do_transition(close)
