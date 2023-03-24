@@ -1,15 +1,14 @@
 from engine.state_machine import *
 
-
-class Story(State):
+class Battle(State):
     trainer = None
 
     def run(self, *args):
-        print('We are in the main story!')
-        print(self.trainer.name)
+        pass
 
-    def update(self, choices):
-        print(self.choices)
+
+    def update(self):
+        pass
 
     def __str__(self):
         return '[State: ' + self.name + ']'
@@ -17,5 +16,6 @@ class Story(State):
     def __repr__(self):
         return str(self)
 
-# methods
-story = Story('Story')
+
+## methods
+battle = Battle('Battle')

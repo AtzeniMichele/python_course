@@ -1,8 +1,8 @@
 from engine.story import *
 from engine.create_character import *
-from engine.state_machine import FiniteStateMachine
+from engine.actions import *
+from engine.battle import *
 from pokemon.trainer import *
-from pokemon.character import *
 
 
 def main():
@@ -10,11 +10,26 @@ def main():
     machine = FiniteStateMachine()
     machine.add_state(cc, trainer=Trainer('', []))
     machine.add_state(story)
+    machine.add_state(pokemonStore, name='Pokemon Store')
+    machine.add_state(pokemonCenter, name='Pokemon Center')
+    machine.add_state(explore, name='Explore')
+    machine.add_state(battle, name='Battle')
+
     machine.add_transition(cc, story)
+    machine.add_transition(story, pokemonStore)
+    machine.add_transition(pokemonStore, story)
+    machine.add_transition(story, pokemonCenter)
+    machine.add_transition(pokemonCenter, story)
+    machine.add_transition(story, explore)
+    machine.add_transition(explore, story)
+    machine.add_transition(explore, battle)
+    machine.add_transition(battle, story)
+    machine.add_transition(battle, pokemonCenter)
+
     machine.set_start_state(cc)
     machine.initialize()
 
-    # machine.draw()
+    machine.draw()
 
     # create character
     machine.eval_current(machine.get_state_attributes('trainer'))
@@ -23,7 +38,30 @@ def main():
     story.trainer = machine.get_state_attributes('trainer')
     machine.do_transition(story)
     machine.eval_current()
-    # machine.draw()
+    #machine.draw()
+
+    # actions
+    action_input = ['Go to pokemon store', 'Go to pokemon center', 'Explore']
+    print('What do you want to do?:')
+    for i, opt in enumerate(action_input):
+        print(i, ':', opt)
+    choice = int(input('Choose option:'))
+
+    if choice == 0:
+        pokemonStore.trainer = story.trainer
+        machine.do_transition(pokemonStore)
+        machine.eval_current(machine.get_state_attributes('name'))
+        #machine.draw()
+    elif choice == 1:
+        pokemonCenter.trainer = story.trainer
+        machine.do_transition(pokemonCenter)
+        machine.eval_current(machine.get_state_attributes('name'))
+        #machine.draw()
+    elif choice == 2:
+        explore.trainer = story.trainer
+        machine.do_transition(explore)
+        machine.eval_current(machine.get_state_attributes('name'))
+        #machine.draw()
 
     forward = True;
 
@@ -61,6 +99,4 @@ def main():
 
 
 if __name__ == "__main__":
-    cc = CreateCharacter('create_character')
-    story = Story('Story')
     main()

@@ -34,3 +34,7 @@ class CreateCharacter(State):
 
     def __repr__(self):
         return str(self)
+
+# methods
+
+cc = CreateCharacter('Create Character')
