@@ -17,4 +17,4 @@ class Exit(State):
 
 
 ## methods
-close = Exit('Battle')
+close = Exit('Exit')
