@@ -1,6 +1,7 @@
 from pokemon.trainer import *
 from pokemon.character import *
 
+
 def main(): 
 
     trainer = Trainer('', [])
