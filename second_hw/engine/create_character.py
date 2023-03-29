@@ -1,4 +1,5 @@
 from engine.state_machine import *
+from pokemon.character import *
 from pokemon.trainer import Trainer
 
 
@@ -14,12 +15,13 @@ class CreateCharacter(State):
         print('Welcome ' + trainer.name)
 
         options = ['Bulbasaur', 'Charmender', 'Squirtle']
+        pokemonlist = [Bulbasaur(), Charmander(), Squirtle()]
         print('Chooose one Pokemon among:')
         for i, opt in enumerate(options):
             print(i, ':', opt)
         choice = int(input('Choose option:'))
 
-        pokemon = options[choice]
+        pokemon = pokemonlist[choice]
         trainer.addPokemon(pokemon)
 
         ## aggiungere items:

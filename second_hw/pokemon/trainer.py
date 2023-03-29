@@ -8,16 +8,17 @@ class Trainer:
         self.pokemon_list = pokemon_list
         self.items = items
 
-    def addPokemon(self, pokemonName):
+    def addPokemon(self, pokemon):
         if len(self.pokemon_list) < 6:
-            if pokemonName.lower() == 'bulbasaur':
-                self.pokemon_list.append(Bulbasaur())
-            elif pokemonName.lower() == 'charmander':
-                self.pokemon_list.append(Charmander())
-            elif pokemonName.lower() == 'squirtle':
-                self.pokemon_list.append(Squirtle())
-            else:
-                print('vecchio non esiste')
+            # if pokemonName.lower() == 'bulbasaur':
+            #     self.pokemon_list.append(Bulbasaur())
+            # elif pokemonName.lower() == 'charmander':
+            #     self.pokemon_list.append(Charmander())
+            # elif pokemonName.lower() == 'squirtle':
+            #     self.pokemon_list.append(Squirtle())
+            # else:
+            #     print('vecchio non esiste')
+            self.pokemon_list.append(pokemon)
 
         else:
             print('Not enough space in your pokemon list!')
@@ -26,8 +27,10 @@ class Trainer:
         self.name = nickname
 
     def addFullItems(self):
+        self.items
         self.items['potions'] = Potions()
         self.items['pokeballs'] = Pokeballs()
+
 
     def addItems(self):
         # TODO: separare i refill di pozioni e pokeball

@@ -23,3 +23,11 @@ class Ember(Attack):
 class WaterGun(Attack):
     def __init__(self):
         super().__init__('water gun', 'water', 'special', 40, 1.0, 25, 25)
+
+class Peck(Attack):
+    def __init__(self):
+        super().__init__('peck', 'flying', 'physical', 35, 1.0, 35, 35)
+
+class Twineedle(Attack):
+    def __init__(self):
+        super().__init__('twineedle', 'bug', 'physical', 25, 1.0, 20, 20)

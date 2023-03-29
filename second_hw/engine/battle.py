@@ -1,7 +1,8 @@
 from engine.state_machine import *
-from pokemon.attack import Ember
-from pokemon.character import Charmander
+from pokemon.character import *
+import random
 
+selvaticPokemons = [Rattata(), Pidgey(), Caterpie()]
 
 class Battle(State):
     trainer = None
@@ -9,35 +10,55 @@ class Battle(State):
 
     def run(self, *args):
         forward = True
-        defender = Charmander()
+        selvaggioPokemon = random.choice(selvaticPokemons)
+        trainerPokemon = self.trainer.pokemon_list[0]
+        print('a wild ' + selvaggioPokemon.name + ' has appeared')
         while forward:
-            print('compare un Charmander selvatico')
 
-            print('Chooose one Pokemon attacker:')
-            for i, opt in enumerate(self.trainer.pokemon_list):
-                print(i, ':', opt.name)
+            options = ['attack', 'change Pokemon', 'use item', 'run away']
+            print('choose an action:')
+            for i, opt in enumerate(options):
+                print(i, ':', opt)
             choice = int(input('Choose option:'))
-            attacker = self.trainer.pokemon_list[choice]
 
-            print('Chooose one Pokemon move:')
-            for i, opt in enumerate(attacker.moves):
-                print(i, ':', opt.name)
-            choice = int(input('Choose option:'))
-            move = attacker.moves[choice]
-            print(str(move.current_pp))
-
-            ## case 1:
-            # noi attacchiamo
-            print('trainer attack')
-
-            forward = attacker.useMove(move, defender)
-            print(str(move.current_pp))
+            ## gestire le quattro azioni:
+            if choice == 0:
+                print('Chooose one Pokemon move:')
+                for i, opt in enumerate(trainerPokemon.moves):
+                    print(i, ':', opt.name)
+                choice = int(input('Choose option:'))
+                move = trainerPokemon.moves[choice]
+                forward = trainerPokemon.useMove(move, selvaggioPokemon)
+            elif choice == 1:
+                self.trainer.pokemon_list[0] = trainerPokemon
+                print('Choose one Pokemon:')
+                for i, opt in enumerate(self.trainer.pokemon_list):
+                    print(i, ':', opt.name)
+                choice = int(input('Choose option:'))
+                trainerPokemon = self.trainer.pokemon_list[choice]
+                self.trainer.pokemon_list[0], self.trainer.pokemon_list[choice] = self.trainer.pokemon_list[choice], self.trainer.pokemon_list[0]
+            elif choice == 2:
+                print('Choose one Item:')
+                for i, opt in enumerate(self.trainer.items):
+                    print(i, ':', opt)
+                choice = int(input('Choose option:'))
+                if choice == 0 and self.trainer.items['potions'].number >0:
+                    # pozioni
+                    self.trainer.items['potions'].number = self.trainer.items['potions'].number -1
+                    trainerPokemon.current_hp = min(trainerPokemon.current_hp + 20,  trainerPokemon.baseStats['hp'])
+                elif choice == 1 and self.trainer.items['pokeballs'].number >0:
+                    self.trainer.items['pokeballs'].number = self.trainer.items['pokeballs'].number - 1
+                    catchProbability = 1 - (selvaggioPokemon.current_hp / selvaggioPokemon.baseStats['hp'])
+                    if catchProbability > random.random():
+                        self.trainer.addPokemon(selvaggioPokemon)
+            elif choice == 3:
+                 if random.random() > 0.6:
+                     self.trainer.pokemon_list[0] = trainerPokemon
+                     forward = False
 
             if forward:
-                ## case 2:
-                # noi difendiamo
-                print('defender attack')
-                forward = defender.useMove(Ember(), attacker)
+                print('selvatic attacks')
+                forward = selvaggioPokemon.useMove(random.choice(selvaggioPokemon.moves), trainerPokemon)
                 if not forward:
                     self.defeated = True
 

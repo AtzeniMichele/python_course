@@ -7,7 +7,7 @@ from pokemon.trainer import *
 
 
 def main():
-    forward = True;
+    forward = True
     # init machine
     machine = FiniteStateMachine()
     machine.add_state(cc, trainer=Trainer('', []))
@@ -57,7 +57,9 @@ def main():
             pokemonStore.trainer = story.trainer
             machine.do_transition(pokemonStore)
             machine.eval_current(machine.get_state_attributes('name'))
+
             # return to the story
+            story.trainer = pokemonStore.trainer
             machine.do_transition(story)
             #machine.draw()
         elif choice == 1:
@@ -65,6 +67,7 @@ def main():
             machine.do_transition(pokemonCenter)
             machine.eval_current(machine.get_state_attributes('name'))
             # return to the story
+            story.trainer = pokemonCenter.trainer
             machine.do_transition(story)
 
             #machine.draw()
@@ -76,10 +79,13 @@ def main():
                 battle.trainer = story.trainer
                 machine.do_transition(battle)
                 machine.eval_current()
+                story.trainer = battle.trainer
                 if battle.defeated:
                     pokemonCenter.trainer = battle.trainer
                     machine.do_transition(pokemonCenter)
                     machine.eval_current(machine.get_state_attributes('name'))
+                    story.trainer = pokemonCenter.trainer
+                          
             machine.do_transition(story)
             #machine.draw()
         elif choice == 3:
