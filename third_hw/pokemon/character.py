@@ -23,7 +23,7 @@ class Pokemon:
                 damage = self.computeDamage(attackType, defender, rnd, effectiveness)
 
                 defender.current_hp = defender.current_hp - damage
-                attackType.current_pp = attackType.current_pp - 1
+                #attackType.current_pp = attackType.current_pp - 1
                 ## se arriva a 0? rip 
                 if defender.current_hp <= 0:
                     print('The attack hits ' + str(damage) + ', ' + defender.name + ' is defeated!')
@@ -32,6 +32,8 @@ class Pokemon:
                     print('The attack hits ' + str(damage) + ', ' + defender.name + ' current hps are:' + str(
                         defender.current_hp))
                     return True
+            else:
+                return True
 
         else:
             print('this move cannot be used anymore!')
@@ -56,10 +58,10 @@ class Pokemon:
         for j in range(len(defender.types)):
             #unique_combinations.append((attackType.type, defender.types[j]))
             for key,value in effectiveness.items():
-                if value['attack'] == attackType and value['defend'] == defender.types[j]:
+                if value['attack'] == attackType.type and value['defend'] == defender.types[j]:
                     #effects.append(value['effectiveness'])
                     effects[j] = value['effectiveness']
-        print(str(effects) + 'result: ' + str(np.prod(effects)))
+        #print(str(effects) + 'result: ' + str(np.prod(effects)))
         return np.prod(effects)
 
 

@@ -19,9 +19,9 @@ class CreateCharacter(State):
         print('Chooose one Pokemon among:')
         for i, opt in enumerate(options):
             print(i, ':', opt)
-        choice = args[1] #int(input('Choose option:'))
+        #choice = int(input('Choose option:'))
 
-        pokemon = pokemonlist[choice]
+        pokemon = args[1] #pokemonlist[choice]
         trainer.addPokemon(pokemon)
 
         ## aggiungere items:
