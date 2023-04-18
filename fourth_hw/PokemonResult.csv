@@ -1,0 +1,31 @@
+n_game,starter,nbattle,defeated,enc_pkm,nturn,hps_within_battle,damages_within_battle,moves_within_battle,hp_perc
+0,bulbasaur,0,True,rapidash,2,"[22.0, 0]","[5, 2]","['razor leaf', 'razor leaf']",-25.862068965517242
+0,bulbasaur,1,True,raichu,6,"[49.0, 29.0, 29.0, 18.0, 7.0, 0]","[5, 7, 8, 15, 7, 8]","['razor leaf', 'petal dance', 'petal dance', 'petal dance', 'petal dance', 'petal dance']",-1.7241379310344827
+0,bulbasaur,2,False,slowbro,6,"[51.0, 44.0, 37.0, 30.0, 26.0]","[19, 20, 9, 19, 19, 40]","['razor leaf', 'petal dance', 'razor leaf', 'petal dance', 'razor leaf', 'petal dance']",44.827586206896555
+0,bulbasaur,3,True,charizard,3,"[28.0, 17.0, 0]","[1, 2, 2]","['razor leaf', 'petal dance', 'petal dance']",-67.24137931034483
+0,bulbasaur,4,True,rapidash,2,"[32.0, 0]","[0, 4]","['razor leaf', 'petal dance']",-39.6551724137931
+0,charmander,0,True,hitmonlee,4,"[31, 16, 2, 0]","[2, 2, 4, 4]","['fury swipes', 'fury swipes', 'slam', 'slam']",-30.76923076923077
+0,charmander,1,True,poliwrath,4,"[28, 28, 6, 0]","[2, 0, 3, 3]","['fury swipes', 'slam', 'slam', 'slam']",-15.384615384615385
+0,charmander,2,True,nidoking,1,[0],[2],['fury swipes'],-110.25641025641026
+0,charmander,3,True,flareon,3,"[26, 14, 0]","[2, 8, 3]","['fury swipes', 'slam', 'slam']",-333.33333333333337
+0,charmander,4,True,seel,3,"[27, 8, 0]","[4, 0, 4]","['slam', 'slam', 'fury swipes']",-28.205128205128204
+0,squirtle,0,True,kakuna,17,"[41, 39, 35, 33, 30, 26, 24, 24, 20, 18, 18, 14, 12, 8, 4, 2, 0]","[2, 2, 4, 4, 2, 4, 2, 0, 2, 4, 2, 4, 4, 4, 2, 2, 2]","['double slap', 'double slap', 'dizzy punch', 'dizzy punch', 'double slap', 'dizzy punch', 'double slap', 'double slap', 'double slap', 'dizzy punch', 'double slap', 'dizzy punch', 'dizzy punch', 'dizzy punch', 'double slap', 'double slap', 'double slap']",-2.272727272727273
+0,squirtle,1,True,vaporeon,5,"[37, 27, 17, 6, 0]","[3, 2, 3, 2, 0]","['dizzy punch', 'double slap', 'dizzy punch', 'double slap', 'double slap']",-18.181818181818183
+0,squirtle,2,True,rhyhorn,4,"[31, 17, 3, 0]","[1, 0, 1, 3]","['double slap', 'double slap', 'dizzy punch', 'dizzy punch']",-2.272727272727273
+0,squirtle,3,True,raichu,3,"[27, 19, 0]","[2, 1, 1]","['double slap', 'double slap', 'double slap']",-161.36363636363635
+0,squirtle,4,True,weezing,10,"[40, 36, 31, 26, 21, 17, 12, 7, 2, 0]","[1, 3, 3, 2, 2, 2, 3, 2, 3, 0]","['double slap', 'dizzy punch', 'dizzy punch', 'dizzy punch', 'dizzy punch', 'double slap', 'dizzy punch', 'double slap', 'dizzy punch', 'double slap']",-4.545454545454546
+1,bulbasaur,0,True,beedrill,7,"[87.0, 76.0, 66.0, 51.0, 40.0, 10.0, 0]","[10, 10, 10, 21, 10, 10, 10]","['petal dance', 'petal dance', 'petal dance', 'petal dance', 'petal dance', 'petal dance', 'petal dance']",-4.081632653061225
+1,bulbasaur,1,False,ninetales,10,"[93.0, 87.0, 84.0, 81.0, 68.0, 65.0, 60.0, 55.0, 49.0]","[6, 13, 6, 6, 13, 12, 12, 6, 6, 12]","['razor leaf', 'petal dance', 'razor leaf', 'razor leaf', 'petal dance', 'petal dance', 'petal dance', 'razor leaf', 'razor leaf', 'razor leaf']",50.0
+1,bulbasaur,2,True,weezing,4,"[47.0, 37.0, 12.0, 0]","[11, 11, 11, 7]","['petal dance', 'petal dance', 'petal dance', 'razor leaf']",-16.3265306122449
+1,bulbasaur,3,False,tentacool,5,"[89.0, 80.0, 71.0, 63.0]","[18, 18, 20, 19, 20]","['petal dance', 'petal dance', 'razor leaf', 'petal dance', 'petal dance']",64.28571428571429
+1,bulbasaur,4,False,blastoise,2,[89.0],"[56, 55]","['petal dance', 'petal dance']",90.81632653061224
+1,charmander,0,True,voltorb,5,"[34, 29, 17, 12, 0]","[5, 2, 2, 4, 0]","['slam', 'fury swipes', 'fury swipes', 'slam', 'fury swipes']",-5.128205128205128
+1,charmander,1,True,charmeleon,3,"[20, 3, 0]","[0, 4, 4]","['fury swipes', 'fury swipes', 'slam']",-43.58974358974359
+1,charmander,2,True,chansey,11,"[34, 29, 26, 21, 16, 11, 5, 2, 2, 2, 0]","[5, 12, 6, 0, 0, 0, 21, 21, 20, 12, 12]","['fury swipes', 'fury swipes', 'fury swipes', 'slam', 'fury swipes', 'fury swipes', 'slam', 'slam', 'slam', 'fury swipes', 'fury swipes']",-2.564102564102564
+1,charmander,3,True,kadabra,7,"[31, 23, 20, 13, 5, 1, 0]","[2, 3, 3, 2, 6, 6, 6]","['fury swipes', 'fury swipes', 'fury swipes', 'fury swipes', 'slam', 'slam', 'slam']",-35.8974358974359
+1,charmander,4,True,seel,7,"[34, 25, 20, 15, 10, 5, 0]","[2, 5, 4, 5, 4, 4, 3]","['fury swipes', 'fury swipes', 'slam', 'fury swipes', 'fury swipes', 'fury swipes', 'slam']",-7.6923076923076925
+1,squirtle,0,True,tauros,1,[0],[2],['dizzy punch'],-329.54545454545456
+1,squirtle,1,True,mewtwo,4,"[31, 23, 7, 0]","[2, 2, 3, 2]","['double slap', 'double slap', 'dizzy punch', 'double slap']",-45.45454545454545
+1,squirtle,2,True,growlithe,1,[0],[2],['double slap'],-52.27272727272727
+1,squirtle,3,True,omanyte,3,"[27, 6, 0]","[1, 1, 1]","['double slap', 'dizzy punch', 'double slap']",-56.81818181818182
+1,squirtle,4,True,psyduck,3,"[40, 27, 0]","[2, 2, 2]","['double slap', 'double slap', 'double slap']",-2.272727272727273
