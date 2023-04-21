@@ -1,0 +1,11 @@
+n_game,starter,nbattle,defeated,enc_pkm,nturn,player_hp,player_attack,player_defense,player_speed,player_special,player_types,opponent_hp,opponent_attack,opponent_defense,opponent_speed,opponent_special,opponent_types
+0,cubone,0,True,articuno,8,82.0,66.0,120.0,47.0,53.0,['ground'],114.0,98.0,115.0,98.0,142.0,"['ice', 'flying']"
+0,cubone,1,True,raichu,5,82.0,66.0,120.0,47.0,53.0,['ground'],111.0,129.0,80.0,143.0,129.0,['electric']
+0,cubone,2,True,dratini,5,82.0,66.0,120.0,47.0,53.0,['ground'],69.0,81.0,59.0,65.0,65.0,['dragon']
+0,cubone,3,True,gloom,4,82.0,66.0,120.0,47.0,53.0,['ground'],98.0,86.0,93.0,55.0,112.0,"['grass', 'poison']"
+0,cubone,4,False,diglett,2,82.0,66.0,120.0,47.0,53.0,['ground'],30.0,69.0,34.0,117.0,58.0,['ground']
+1,lickitung,0,False,nidoking,6,156.0,82.0,110.0,47.0,89.0,['normal'],104.0,106.0,89.0,98.0,87.0,"['poison', 'ground']"
+1,lickitung,1,False,kadabra,4,156.0,82.0,110.0,47.0,89.0,['normal'],86.0,54.0,47.0,152.0,173.0,['psychic']
+1,lickitung,2,False,dratini,5,156.0,82.0,110.0,47.0,89.0,['normal'],109.0,107.0,79.0,86.0,86.0,['dragon']
+1,lickitung,3,False,venusaur,6,156.0,82.0,110.0,47.0,89.0,['normal'],108.0,98.0,99.0,96.0,119.0,"['grass', 'poison']"
+1,lickitung,4,False,paras,2,156.0,82.0,110.0,47.0,89.0,['normal'],53.0,82.0,65.0,32.0,65.0,"['bug', 'grass']"
