@@ -11,16 +11,16 @@ class CreateCharacter(State):
         #trainer = Trainer('', [])
         trainer = args[0]
         # name
-        print('create your pokemon trainer')
+        #print('create your pokemon trainer')
         nickname = 'ash' #input()
         trainer.addName(nickname)
-        print('Welcome ' + trainer.name)
+        #print('Welcome ' + trainer.name)
 
         options = ['Bulbasaur', 'Charmender', 'Squirtle']
         pokemonlist = [Bulbasaur(), Charmander(), Squirtle()]
-        print('Chooose one Pokemon among:')
-        for i, opt in enumerate(options):
-            print(i, ':', opt)
+        #print('Chooose one Pokemon among:')
+        #for i, opt in enumerate(options):
+            #print(i, ':', opt)
         #choice = int(input('Choose option:'))
         pokemons_df = args[1]
         rnd_line = pokemons_df.sample()
@@ -35,7 +35,7 @@ class CreateCharacter(State):
 
         ## aggiungere items:
         trainer.addFullItems()
-        print('added 10 potions and 10 pokeballs!')
+        #print('added 10 potions and 10 pokeballs!')
 
     def update(self):
         pass

@@ -10,25 +10,25 @@ class Actions(State):
 
     def run(self, *args):
         if args[0] == 'Pokemon Store':
-            print('Pokemon Store')
+            #print('Pokemon Store')
             self.trainer.addItems()
-            print('succesfully restored items!')
+            #print('succesfully restored items!')
         elif args[0] == 'Pokemon Center':
             ## TODO: aggiungere if hps and pps == max
-            print('Pokemon Center')
+            #print('Pokemon Center')
             for pokemon in self.trainer.pokemon_list:
                 pokemon.current_hp = pokemon.actStats['hp']
-                print('successfully restored ' + pokemon.name + ' hps!')
+                #print('successfully restored ' + pokemon.name + ' hps!')
                 for move in pokemon.moves:
                     move.current_pp = move.pp
-                    print('successfully restored ' + move.name + ' pps!')
+                    #print('successfully restored ' + move.name + ' pps!')
         elif args[0] == 'Explore':
             rnd = random()
             success = 1 > 0.8
             if success:
-                print('success')
+                #print('success')
                 self.battle = True
-            print('Explore')
+            #print('Explore')
 
 
     def update(self):

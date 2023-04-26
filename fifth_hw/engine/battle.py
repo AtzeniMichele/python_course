@@ -40,7 +40,7 @@ class Battle(State):
         self.opponent_actstats = self.selvaggioPokemon.actStats
         trainerPokemon = self.trainer.pokemon_list[0]
         effectiveness = args[1]
-        print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
+        #print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
 
         while forward:
             self.n_turn += 1
@@ -91,7 +91,7 @@ class Battle(State):
                     forward = False
 
             if forward:
-                print('selvatic attacks')
+                #print('selvatic attacks')
                 forward, hps, _ = self.selvaggioPokemon.useMove(random.choice(self.selvaggioPokemon.moves),
                                                                 trainerPokemon,
                                                                 effectiveness)

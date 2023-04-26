@@ -7,17 +7,18 @@ from json_handler import *
 from pokemon.trainer import *
 import pickle
 import pandas as pd
+import datetime
 
 
 def main():
     # game init
 
     ## moves:
-    moves_df = pd.read_json('/Users/micheleatzeni/Desktop/python course/fifth_hw/json_files/moves.json', lines=True)
+    moves_df = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fifth_hw/json_files/moves.json', lines=True)
     moves_df = moves_df.dropna(subset=['name', 'type', 'category', 'power', 'accuracy', 'pp'])
 
     ## pokemons:
-    pokemons_df = pd.read_json('/Users/micheleatzeni/Desktop/python course/fifth_hw/json_files/pokemons.json',
+    pokemons_df = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fifth_hw/json_files/pokemons.json',
                                lines=True)
 
     ##filtering moves
@@ -34,7 +35,7 @@ def main():
 
     ## effectiveness:
     effectiveness_df = pd.read_json(
-        '/Users/micheleatzeni/Desktop/python course/fifth_hw/json_files/type_effectiveness.json', lines=True)
+        'C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fifth_hw/json_files/type_effectiveness.json', lines=True)
     #
     # ## moves
     # moves_dict = json_handler('moves')
@@ -125,7 +126,8 @@ def main():
     # # machine.draw()
 
     while nGame < 1001:
-        print('newGame!')
+        ss = datetime.datetime.now()
+        print('-----NEWGAME----- n=',nGame)
 
         forward = True
         # init machine
@@ -153,7 +155,7 @@ def main():
         machine.set_start_state(cc)
         machine.initialize()
 
-        machine.draw()
+        # machine.draw()
         continueGame = True
 
         # create character
@@ -167,6 +169,7 @@ def main():
 
         nBattles = 0
         while nBattles < 501:
+            #print('nBattle=', nBattles)
 
             # actions
             action_input = ['Go to pokemon store', 'Go to pokemon center', 'Explore', 'Exit']
@@ -236,6 +239,8 @@ def main():
                 machine.eval_current()
                 # machine.draw()
         nGame += 1
+        end = datetime.datetime.now()
+        print((end - ss))
     df = pd.DataFrame(results)
     df.to_csv('PokemonResult.csv', index=False)
     # with open("pokemon_game_results.p", "wb") as fb:
