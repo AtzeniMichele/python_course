@@ -89,10 +89,10 @@ class Pokemon:
         self.level = level
         for key,value in self.baseStats.items():
             if key == 'hp':
-                self.current_hp = self.baseStats['hp'] + np.floor(self.baseStats['hp'] * 2 * level / 100) + level + 10
+                self.current_hp = np.floor(self.baseStats['hp'] * 2 * level / 100) + level + 10
                 self.actStats[key] = self.current_hp
             else:
-                self.actStats[key] = self.baseStats[key] + np.floor(self.baseStats[key] * 2 * level / 100) + 5
+                self.actStats[key] = np.floor(self.baseStats[key] * 2 * level / 100) + 5
 
 
 
