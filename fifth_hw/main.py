@@ -14,11 +14,11 @@ def main():
     # game init
 
     ## moves:
-    moves_df = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fifth_hw/json_files/moves.json', lines=True)
+    moves_df = pd.read_json('/Users/micheleatzeni/Desktop/python course/fifth_hw/json_files/moves.json', lines=True)
     moves_df = moves_df.dropna(subset=['name', 'type', 'category', 'power', 'accuracy', 'pp'])
 
     ## pokemons:
-    pokemons_df = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fifth_hw/json_files/pokemons.json',
+    pokemons_df = pd.read_json('/Users/micheleatzeni/Desktop/python course/fifth_hw/json_files/pokemons.json',
                                lines=True)
 
     ##filtering moves
@@ -35,7 +35,7 @@ def main():
 
     ## effectiveness:
     effectiveness_df = pd.read_json(
-        'C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fifth_hw/json_files/type_effectiveness.json', lines=True)
+        '/Users/micheleatzeni/Desktop/python course/fifth_hw/json_files/type_effectiveness.json', lines=True)
     #
     # ## moves
     # moves_dict = json_handler('moves')
