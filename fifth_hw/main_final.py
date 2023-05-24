@@ -170,6 +170,12 @@ def main():
         # create character
         machine.eval_current(machine.get_state_attributes('trainer'), pokemons_df)
 
+        # simulate captured pokemons:
+        trainer = machine.get_state_attributes('trainer')
+
+
+
+
         # go in the main story
         story.trainer = machine.get_state_attributes('trainer')
         machine.do_transition(story)

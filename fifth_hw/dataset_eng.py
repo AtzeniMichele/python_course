@@ -17,7 +17,8 @@ def custom_one_hot(df_row, encoder):
     return np.sum(encoded_row, axis=0)
 
 
-def encoding(df_column, encoder_labels, label_prefix=None, column_name=None):
+def encoding(df_column, label_prefix=None, column_name=None):
+    encoder_labels = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fifth_hw/data/map_type.csv', delimiter=';')
     str_enc = encoder_labels.iloc[:, 0].values.reshape(-1, 1)
 
     one_hot = OneHotEncoder(sparse_output=False)
@@ -31,27 +32,26 @@ def encoding(df_column, encoder_labels, label_prefix=None, column_name=None):
     return pd.DataFrame(one_hot_res[column_name].tolist(), columns=str_enc_labeled)
 
 
-## Load data
-encoder = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fifth_hw/map_type.csv', delimiter=';')
-df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fifth_hw/PokemonResult.csv', delimiter=';')
-df = df.sample(frac=1).reset_index(drop=True)
-
-## outcome
-y = df['defeated']
-
-## independent
-x = df.loc[:, df.columns != 'defeated']
-
-variables_to_drop = ['n_game', 'starter', 'nbattle', 'enc_pkm', 'nturn']
-x = x.drop(variables_to_drop, axis=1)
-
-
-player_one_hot = encoding(x['player_types'], encoder, 'player', 'player_types')
-opponent_one_hot = encoding(x['opponent_types'], encoder, 'opponent', 'opponent_types')
-
-x = x.drop(['player_types', 'opponent_types'], axis=1)
-
-final_x = pd.concat([x, player_one_hot, opponent_one_hot], axis=1, join='inner')
-
-final_x.to_csv('RefactoredIndependentPokemonResult.csv', index=False)
-y.to_csv('RefactoredOutcomePokemonResult.csv', index=False)
+# ## Load data
+# df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fifth_hw/data/PokemonResult.csv', delimiter=';')
+# df = df.sample(frac=1).reset_index(drop=True)
+#
+# ## outcome
+# y = df['defeated']
+#
+# ## independent
+# x = df.loc[:, df.columns != 'defeated']
+#
+# variables_to_drop = ['n_game', 'starter', 'nbattle', 'enc_pkm', 'nturn']
+# x = x.drop(variables_to_drop, axis=1)
+#
+#
+# player_one_hot = encoding(x['player_types'], 'player', 'player_types')
+# opponent_one_hot = encoding(x['opponent_types'], 'opponent', 'opponent_types')
+#
+# x = x.drop(['player_types', 'opponent_types'], axis=1)
+#
+# final_x = pd.concat([x, player_one_hot, opponent_one_hot], axis=1, join='inner')
+#
+# final_x.to_csv('RefactoredIndependentPokemonResult.csv', index=False)
+# y.to_csv('RefactoredOutcomePokemonResult.csv', index=False)

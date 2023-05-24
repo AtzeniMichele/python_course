@@ -1,7 +1,10 @@
+import pandas as pd
+
 from engine.state_machine import *
 from pokemon.character import *
 import random
 import copy
+from dataset_eng import *
 
 
 # selvaticPokemons = [Rattata(), Pidgey(), Caterpie()]
@@ -40,7 +43,47 @@ class Battle(State):
         self.opponent_actstats = self.selvaggioPokemon.actStats
         trainerPokemon = self.trainer.pokemon_list[0]
         effectiveness = args[1]
-        #print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
+        print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
+        rf = args[2]
+
+        ## ------------------- Pokemon Recommender System ---------------- ##
+        str_player_types = '[' + ', '.join(self.trainer.pokemon_list[0].types) + ']'
+        str_opponent_types = '[' + ', '.join(self.selvaggioPokemon.types) + ']'
+        x = {
+            "player_hp": self.player_actstats['hp'],
+            "player_attack": self.player_actstats['attack'],
+            "player_defense": self.player_actstats['defense'],
+            "player_speed": self.player_actstats['speed'],
+            "player_special": self.player_actstats['special'],
+            "player_types": [str_player_types],
+            "opponent_hp": self.opponent_actstats['hp'],
+            "opponent_attack": self.opponent_actstats['attack'],
+            "opponent_defense": self.opponent_actstats['defense'],
+            "opponent_speed": self.opponent_actstats['speed'],
+            "opponent_special": self.opponent_actstats['special'],
+            "opponent_types": [str_opponent_types],
+        }
+
+        x_df = pd.DataFrame(x)
+        enc_res_player = encoding(x_df['player_types'], 'player', 'player_types')
+        enc_res_opponent = encoding(x_df['opponent_types'], 'opponent', 'opponent_types')
+
+        x_df = x_df.drop(['player_types', 'opponent_types'], axis=1)
+        final_x = pd.concat([x_df, enc_res_player, enc_res_opponent], axis=1, join='inner')
+
+        win_proba = rf.predict_proba(final_x)[0, 0]
+        print('probability' + str(win_proba))
+
+
+        if (win_proba > 0.5):
+            print('battle')
+            choice = 0  # int(input('Choose option:'))
+        else:
+            print('escape')
+            choice = 3
+        ## -------------------------------------------------------------- ##
+
+
 
         while forward:
             self.n_turn += 1
@@ -48,7 +91,7 @@ class Battle(State):
             # print('choose an action:')
             # for i, opt in enumerate(options):
             # print(i, ':', opt)
-            choice = 0  # int(input('Choose option:'))
+
 
             ## gestire le quattro azioni:
             if choice == 0:
@@ -56,6 +99,8 @@ class Battle(State):
                 # for i, opt in enumerate(trainerPokemon.moves):
                 # print(i, ':', opt.name)
                 # choice = int(input('Choose option:'))
+
+
                 move = random.choice(trainerPokemon.moves)  # trainerPokemon.moves[choice]
                 forward, _, damage = trainerPokemon.useMove(move, self.selvaggioPokemon, effectiveness)
                 # self.hps_within_battle.append(hps)
@@ -91,7 +136,7 @@ class Battle(State):
                     forward = False
 
             if forward:
-                #print('selvatic attacks')
+                print('selvatic attacks')
                 forward, hps, _ = self.selvaggioPokemon.useMove(random.choice(self.selvaggioPokemon.moves),
                                                                 trainerPokemon,
                                                                 effectiveness)
