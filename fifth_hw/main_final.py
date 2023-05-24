@@ -134,7 +134,7 @@ def main():
 
 
 
-    while nGame < 100:
+    while nGame < 1:
         ss = datetime.datetime.now()
         print('-----NEWGAME----- n=',nGame)
 
@@ -172,18 +172,30 @@ def main():
 
         # simulate captured pokemons:
         trainer = machine.get_state_attributes('trainer')
+        for i in np.arange(start= 0, stop = 4):
+            rnd_line = pokemons_df.sample()
+            pokemon = Pokemon(name=rnd_line['name'].iloc[0], level=1, types=rnd_line['types'].iloc[0],
+                                            baseStats=rnd_line['baseStats'].iloc[0],
+                                            actStats=copy.deepcopy(rnd_line['baseStats'].iloc[0]),
+                                            national_pokedex_number=rnd_line['national_pokedex_number'].iloc[0],
+                                            current_hp=rnd_line['baseStats'].iloc[0]['hp'],
+                                            moves=random.choices(rnd_line['possible_moves'].iloc[0], k=2))
+            trainer.addPokemon(pokemon)
+            trainer.pokemon_list[i+1].levelUp(random.randint(1, 20))
+
+
 
 
 
 
         # go in the main story
-        story.trainer = machine.get_state_attributes('trainer')
+        story.trainer = trainer
         machine.do_transition(story)
         machine.eval_current()
         # machine.draw()
 
         nBattles = 0
-        while nBattles < 5:
+        while nBattles < 1:
             #print('nBattle=', nBattles)
 
             # actions
@@ -220,26 +232,26 @@ def main():
                     machine.do_transition(battle)
                     machine.eval_current(pokemons_df, effectiveness_df, rf)
                     story.trainer = battle.trainer
-                    results.append({
-                        "n_game": nGame,
-                        "starter": battle.trainer.pokemon_list[0].name,
-                        "nbattle": nBattles,
-                        "defeated": battle.defeated,
-                        "enc_pkm": battle.selvaggioPokemon.name,
-                        "nturn": battle.n_turn,
-                        "player_hp": battle.player_actstats['hp'],
-                        "player_attack": battle.player_actstats['attack'],
-                        "player_defense": battle.player_actstats['defense'],
-                        "player_speed": battle.player_actstats['speed'],
-                        "player_special": battle.player_actstats['special'],
-                        "player_types": battle.trainer.pokemon_list[0].types,
-                        "opponent_hp": battle.opponent_actstats['hp'],
-                        "opponent_attack": battle.opponent_actstats['attack'],
-                        "opponent_defense": battle.opponent_actstats['defense'],
-                        "opponent_speed": battle.opponent_actstats['speed'],
-                        "opponent_special": battle.opponent_actstats['special'],
-                        "opponent_types": battle.selvaggioPokemon.types,
-                    })
+                    # results.append({
+                    #     "n_game": nGame,
+                    #     "starter": battle.trainer.pokemon_list[0].name,
+                    #     "nbattle": nBattles,
+                    #     "defeated": battle.defeated,
+                    #     "enc_pkm": battle.selvaggioPokemon.name,
+                    #     "nturn": battle.n_turn,
+                    #     "player_hp": battle.player_actstats['hp'],
+                    #     "player_attack": battle.player_actstats['attack'],
+                    #     "player_defense": battle.player_actstats['defense'],
+                    #     "player_speed": battle.player_actstats['speed'],
+                    #     "player_special": battle.player_actstats['special'],
+                    #     "player_types": battle.trainer.pokemon_list[0].types,
+                    #     "opponent_hp": battle.opponent_actstats['hp'],
+                    #     "opponent_attack": battle.opponent_actstats['attack'],
+                    #     "opponent_defense": battle.opponent_actstats['defense'],
+                    #     "opponent_speed": battle.opponent_actstats['speed'],
+                    #     "opponent_special": battle.opponent_actstats['special'],
+                    #     "opponent_types": battle.selvaggioPokemon.types,
+                    # })
                     if True:
                         pokemonCenter.trainer = battle.trainer
                         machine.do_transition(pokemonCenter)
@@ -256,8 +268,8 @@ def main():
         nGame += 1
         end = datetime.datetime.now()
         print((end - ss))
-    df = pd.DataFrame(results)
-    df.to_csv('PokemonResult.csv', index=False)
+    # df = pd.DataFrame(results)
+    # df.to_csv('PokemonResult.csv', index=False)
     # with open("pokemon_game_results.p", "wb") as fb:
     #     pickle.dump(results, fb)
     return
