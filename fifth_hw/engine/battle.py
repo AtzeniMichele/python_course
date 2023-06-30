@@ -27,7 +27,7 @@ class Battle(State):
         self.damages_within_battle = []
         self.moves_within_battle = []
         self.defeated = False
-        self.player_actstats = self.trainer.pokemon_list[0].actStats
+        #self.player_actstats = self.trainer.pokemon_list[0].actStats
         forward = True
         ## nuova scelta selvaggio pk:
         pokemons_df = args[0]
@@ -41,41 +41,49 @@ class Battle(State):
                                         moves=random.choices(rnd_line['possible_moves'].iloc[0], k=2))
         self.selvaggioPokemon.levelUp(random.randint(1, 20))
         self.opponent_actstats = self.selvaggioPokemon.actStats
-        trainerPokemon = self.trainer.pokemon_list[0]
         effectiveness = args[1]
         print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
         rf = args[2]
-
+        win_proba = np.array([])
         ## ------------------- Pokemon Recommender System ---------------- ##
-        str_player_types = '[' + ', '.join(self.trainer.pokemon_list[0].types) + ']'
-        str_opponent_types = '[' + ', '.join(self.selvaggioPokemon.types) + ']'
-        x = {
-            "player_hp": self.player_actstats['hp'],
-            "player_attack": self.player_actstats['attack'],
-            "player_defense": self.player_actstats['defense'],
-            "player_speed": self.player_actstats['speed'],
-            "player_special": self.player_actstats['special'],
-            "player_types": [str_player_types],
-            "opponent_hp": self.opponent_actstats['hp'],
-            "opponent_attack": self.opponent_actstats['attack'],
-            "opponent_defense": self.opponent_actstats['defense'],
-            "opponent_speed": self.opponent_actstats['speed'],
-            "opponent_special": self.opponent_actstats['special'],
-            "opponent_types": [str_opponent_types],
-        }
+        for pkm in self.trainer.pokemon_list:
 
-        x_df = pd.DataFrame(x)
-        enc_res_player = encoding(x_df['player_types'], 'player', 'player_types')
-        enc_res_opponent = encoding(x_df['opponent_types'], 'opponent', 'opponent_types')
+            str_player_types = '[' + ', '.join(pkm.types) + ']'
+            str_opponent_types = '[' + ', '.join(self.selvaggioPokemon.types) + ']'
+            x = {
+                "player_hp": pkm.actStats['hp'],
+                "player_attack": pkm.actStats['attack'],
+                "player_defense": pkm.actStats['defense'],
+                "player_speed": pkm.actStats['speed'],
+                "player_special": pkm.actStats['special'],
+                "player_types": [str_player_types],
+                "opponent_hp": self.opponent_actstats['hp'],
+                "opponent_attack": self.opponent_actstats['attack'],
+                "opponent_defense": self.opponent_actstats['defense'],
+                "opponent_speed": self.opponent_actstats['speed'],
+                "opponent_special": self.opponent_actstats['special'],
+                "opponent_types": [str_opponent_types],
+            }
 
-        x_df = x_df.drop(['player_types', 'opponent_types'], axis=1)
-        final_x = pd.concat([x_df, enc_res_player, enc_res_opponent], axis=1, join='inner')
+            x_df = pd.DataFrame(x)
+            enc_res_player = encoding(x_df['player_types'], 'player', 'player_types')
+            enc_res_opponent = encoding(x_df['opponent_types'], 'opponent', 'opponent_types')
 
-        win_proba = rf.predict_proba(final_x)[0, 0]
-        print('probability' + str(win_proba))
+            x_df = x_df.drop(['player_types', 'opponent_types'], axis=1)
+            final_x = pd.concat([x_df, enc_res_player, enc_res_opponent], axis=1, join='inner')
+
+            pkm_win_proba = rf.predict_proba(final_x)[0, 0]
+            print(pkm.name + ': probability' + str(pkm_win_proba))
+            win_proba = np.append(win_proba, np.array(pkm_win_proba))
 
 
-        if (win_proba > 0.5):
+        ## suggested/chosen pokemon:
+        idx = np.argmax(win_proba)
+        print('suggested pokemon is' + self.trainer.pokemon_list[idx].name)
+        trainerPokemon = self.trainer.pokemon_list[idx]
+
+
+        if (np.amax(win_proba) > 0.5):
             print('battle')
             choice = 0  # int(input('Choose option:'))
         else:
