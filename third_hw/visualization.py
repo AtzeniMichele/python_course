@@ -106,6 +106,7 @@ def simple_plot(result, pkmName):
     n_battles = list(result.keys())
     result_mean = sum(wins) / len(wins)
 
+    plt.figure()
     plt.plot(n_battles, wins, 'o')
     plt.plot(n_battles, np.repeat(result_mean, len(n_battles)))
     plt.title('Simple plot ' + pkmName)
@@ -134,6 +135,7 @@ def box_plot(nturn_result, hp_results, pkmNameList):
 
 
 def bar_chart(names, percentages, pkmName):
+    plt.figure()
     plt.barh(names, percentages)
     plt.title('Bar chart ' + pkmName)
     plt.ylabel('Encountered pokemons')
@@ -142,6 +144,7 @@ def bar_chart(names, percentages, pkmName):
 
 
 def errorbar_chart(names, means,stds, pkmName):
+    plt.figure()
     plt.barh(names, means, xerr=stds, alpha=0.5, capsize=5)
     plt.title('Bar chart ' + pkmName)
     plt.ylabel('Encountered pokemons')
@@ -156,32 +159,32 @@ data = pickle.load(pickle_in)
 # 1. lineplot
 
 # bulbasaur
-# b_plot1_data = processing_simple_plot('bulbasaur', data)
-# simple_plot(b_plot1_data, 'bulbasaur')
+b_plot1_data = processing_simple_plot('bulbasaur', data)
+simple_plot(b_plot1_data, 'bulbasaur')
 # # charmander
-# c_plot1_data = processing_simple_plot('charmander', data)
-# simple_plot(c_plot1_data, 'charmander')
+c_plot1_data = processing_simple_plot('charmander', data)
+simple_plot(c_plot1_data, 'charmander')
 # # squirtle
-# s_plot1_data = processing_simple_plot('squirtle', data)
-# simple_plot(s_plot1_data, 'squirtle')
+s_plot1_data = processing_simple_plot('squirtle', data)
+simple_plot(s_plot1_data, 'squirtle')
 
 # 2. box plot
-# nturn_b_plot2_data, hp_b_plot2_data  = processing_box_plot('bulbasaur', data)
-# nturn_c_plot2_data, hp_c_plot2_data  = processing_box_plot('charmander', data)
-# nturn_s_plot2_data, hp_s_plot2_data  = processing_box_plot('squirtle', data)
-# box_plot([nturn_b_plot2_data, nturn_c_plot2_data, nturn_s_plot2_data], [hp_b_plot2_data, hp_c_plot2_data, hp_s_plot2_data], ['Bulbasaur', 'Charmander', 'Squirtle'])
-# print('done')
+nturn_b_plot2_data, hp_b_plot2_data  = processing_box_plot('bulbasaur', data)
+nturn_c_plot2_data, hp_c_plot2_data  = processing_box_plot('charmander', data)
+nturn_s_plot2_data, hp_s_plot2_data  = processing_box_plot('squirtle', data)
+box_plot([nturn_b_plot2_data, nturn_c_plot2_data, nturn_s_plot2_data], [hp_b_plot2_data, hp_c_plot2_data, hp_s_plot2_data], ['Bulbasaur', 'Charmander', 'Squirtle'])
+print('done')
 
 # 3. bar charts
 # pt 1
-# b_plot3_data, b_names, b_percentages = processing_bar_chart('bulbasaur', data)
-# bar_chart(b_names, b_percentages, 'bulbasaur')
+b_plot3_data, b_names, b_percentages = processing_bar_chart('bulbasaur', data)
+bar_chart(b_names, b_percentages, 'bulbasaur')
 #
-# c_plot3_data, c_names, c_percentages = processing_bar_chart('charmander', data)
-# bar_chart(c_names, c_percentages, 'charmander')
+c_plot3_data, c_names, c_percentages = processing_bar_chart('charmander', data)
+bar_chart(c_names, c_percentages, 'charmander')
 #
-# s_plot3_data, s_names, s_percentages = processing_bar_chart('squirtle', data)
-# bar_chart(s_names, s_percentages, 'squirtle')
+s_plot3_data, s_names, s_percentages = processing_bar_chart('squirtle', data)
+bar_chart(s_names, s_percentages, 'squirtle')
 
 
 # pt 2

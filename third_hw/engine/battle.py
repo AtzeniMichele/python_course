@@ -18,7 +18,7 @@ class Battle(State):
         self.selvaggioPokemon = random.choice(args[0])
         trainerPokemon = self.trainer.pokemon_list[0]
         effectiveness = args[1]
-        print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
+        #print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
 
         while forward:
             self.n_turn += 1
@@ -47,7 +47,7 @@ class Battle(State):
                 self.trainer.pokemon_list[0], self.trainer.pokemon_list[choice] = self.trainer.pokemon_list[choice], \
                                                                                   self.trainer.pokemon_list[0]
             elif choice == 2:
-                print('Choose one Item:')
+                #print('Choose one Item:')
                 for i, opt in enumerate(self.trainer.items):
                     print(i, ':', opt)
                 choice = int(input('Choose option:'))
@@ -67,7 +67,7 @@ class Battle(State):
 
 
             if forward:
-                print('selvatic attacks')
+                #print('selvatic attacks')
                 forward = self.selvaggioPokemon.useMove(random.choice(self.selvaggioPokemon.moves), trainerPokemon,
                                                         effectiveness)
 

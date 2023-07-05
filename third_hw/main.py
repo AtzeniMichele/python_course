@@ -82,8 +82,8 @@ def main():
         # machine.eval_current()
         # # machine.draw()
 
-    while nGame < 2:
-        print('newGame!')
+    while nGame < 500:
+        print('Game' + str(nGame))
 
         forward = True
         # init machine
@@ -111,7 +111,7 @@ def main():
         machine.set_start_state(cc)
         machine.initialize()
 
-        machine.draw()
+        # machine.draw()
         continueGame = True
 
         # create character
@@ -127,7 +127,7 @@ def main():
 
             story.trainer.pokemon_list[0] = starter
             nBattles = 0
-            while nBattles < 5:
+            while nBattles < 150:
 
                 # actions
                 action_input = ['Go to pokemon store', 'Go to pokemon center', 'Explore', 'Exit']

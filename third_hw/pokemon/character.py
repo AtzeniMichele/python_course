@@ -19,18 +19,18 @@ class Pokemon:
             rnd = random.random()
             success = rnd < attackType.accuracy
             if success:
-                print('successfully attacking!')
+                #print('successfully attacking!')
                 damage = self.computeDamage(attackType, defender, rnd, effectiveness)
 
                 defender.current_hp = defender.current_hp - damage
                 #attackType.current_pp = attackType.current_pp - 1
                 ## se arriva a 0? rip 
                 if defender.current_hp <= 0:
-                    print('The attack hits ' + str(damage) + ', ' + defender.name + ' is defeated!')
+                    #print('The attack hits ' + str(damage) + ', ' + defender.name + ' is defeated!')
                     return False
                 else:
-                    print('The attack hits ' + str(damage) + ', ' + defender.name + ' current hps are:' + str(
-                        defender.current_hp))
+                    #print('The attack hits ' + str(damage) + ', ' + defender.name + ' current hps are:' + str(
+                        #defender.current_hp))
                     return True
             else:
                 return True

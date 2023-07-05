@@ -23,20 +23,20 @@ class FiniteStateMachine:
     # Method to remove a state from the FSM
     def remove_state(self, name):
         if self.state not in list(self.G):
-            print("State", self.state, "is not present!")
+            #print("State", self.state, "is not present!")
             return False
         self.G.remove_node(self.state)
 
     # Method to remove a transition from the FSM
     def remove_transition(self, state1, state2):
         if state1 not in list(self.G):
-            print("State", state1, "is not present!")
+            #print("State", state1, "is not present!")
             return False
         if state2 not in list(self.G):
-            print("State", state2, "is not present!")
+            #print("State", state2, "is not present!")
             return False
         if (state1, state2) not in [e for e in self.G.edges]:
-            print("Transition", (state1, state2), "is not present!")
+            #print("Transition", (state1, state2), "is not present!")
             return False
         self.G.remove_edge(state1, state2)
 
@@ -44,7 +44,7 @@ class FiniteStateMachine:
 
     def set_start_state(self, state):
         if state not in list(self.G):
-            print("State", state, "is not present!")
+            #print("State", state, "is not present!")
             return False
         self.start_state = state
 
@@ -52,21 +52,21 @@ class FiniteStateMachine:
     def set_final_states(self, states):
         for s in states:
             if s not in list(self.G):
-                print("State", s, "is not present!")
+                #print("State", s, "is not present!")
                 return False
         self.final_states = set(states)
 
     # Method to add a final state to the FSM
     def add_final_state(self, state):
         if state not in list(self.G):
-            print("State", state, "is not present!")
+            #print("State", state, "is not present!")
             return False
         self.final_states.add(state)
 
     # Method to remove a final state from the FSM
     def remove_final_state(self, state):
         if state not in self.final_states:
-            print("State", state, "is not present!")
+            #print("State", state, "is not present!")
             return False
         self.final_states.remove(state)
 
@@ -109,7 +109,7 @@ class FiniteStateMachine:
     def update(self, *args, update='update', **kargs):
         choices = self.possible_transitions()
         if not choices:
-            print("No transition possible, machine halting.")
+            #print("No transition possible, machine halting.")
             return None
         elif len(choices) == 1:
             return choices[0]
@@ -117,7 +117,7 @@ class FiniteStateMachine:
             method = getattr(self.state, update, None)
             return method(choices, *args, **kargs)
         else:
-            print("Update rule is undefined, machine halting.")
+            #print("Update rule is undefined, machine halting.")
             return None
 
     # Method to draw the FSM and, eventually, visualize the current state of the FSM   
