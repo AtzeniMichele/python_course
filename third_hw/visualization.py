@@ -50,8 +50,9 @@ def processing_bar_chart(pkm_name, input_data):
         if i['enc:pkm'] in plot3_data:
             # add to already existing key
             counter = plot3_data[i['enc:pkm']][0] + 1
+            wins = plot3_data[i['enc:pkm']][1]
             if not i['defeated']:
-                wins = plot3_data[i['enc:pkm']][1] + 1
+                wins += 1
             plot3_data[i['enc:pkm']] = [counter, wins]
         else:
             # create new key, then add
@@ -78,15 +79,19 @@ def processing_m_and_std_bar_chart(pkm_name, input_data):
         if i['enc:pkm'] in plot3_data:
             # add to already existing key
             if i['hp_perc'] >= 0:
-                plot3_data[i['enc:pkm']] = plot3_data[i['enc:pkm']].append(i['hp_perc'])
+                plot3_data[i['enc:pkm']].append(i['hp_perc'])
             else:
-                plot3_data[i['enc:pkm']] = plot3_data[i['enc:pkm']].append(0)
+                plot3_data[i['enc:pkm']].append(0.0)
+            # print(plot3_data)
         else:
             # create new key, then add
+            # print(i['enc:pkm'])
+            # print(i['hp_perc'])
+            # print('---------')
             if i['hp_perc'] >= 0:
                 plot3_data[i['enc:pkm']] = [i['hp_perc']]
             else:
-                plot3_data[i['enc:pkm']] = [0]
+                plot3_data[i['enc:pkm']] = [0.0]
 
     names = []
     means = []
@@ -153,7 +158,7 @@ def errorbar_chart(names, means,stds, pkmName):
 
 
 ### main
-pickle_in = open("pokemon_game_results.p", "rb")
+pickle_in = open("pokemon_game_results2.p", "rb")
 data = pickle.load(pickle_in)
 
 # 1. lineplot
