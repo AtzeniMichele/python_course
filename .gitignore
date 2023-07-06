@@ -5,7 +5,6 @@ fifth_hw/RefactoredPokemonResult.csv
 fifth_hw/map_type.csv
 fifth_hw/map_type.xlsx
 fifth_hw/map_encoder.py
-fifth_hw/data/pokemon_game_results.p
 fifth_hw/data/PokemonResult.csv
 fifth_hw/data/RefactoredIndependentPokemonResult.csv
 fifth_hw/data/RefactoredOutcomePokemonResult.csv
