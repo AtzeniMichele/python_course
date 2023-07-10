@@ -20,7 +20,7 @@ class Pokemon:
             rnd = random.random()
             success = rnd < attackType.accuracy
             if success:
-                print('successfully attacking!')
+                #print('successfully attacking!')
                 damage = self.computeDamage(attackType, defender, rnd, effectiveness)
 
                 defender.current_hp = defender.current_hp - damage
@@ -87,10 +87,10 @@ class Pokemon:
         self.level = level
         for key,value in self.baseStats.items():
             if key == 'hp':
-                self.current_hp = self.baseStats['hp'] + np.floor(self.baseStats['hp'] * 2 * level / 100) + level + 10
+                self.current_hp = np.floor(self.baseStats['hp'] * 2 * level / 100) + level + 10
                 self.actStats[key] = self.current_hp
             else:
-                self.actStats[key] = self.baseStats[key] + np.floor(self.baseStats[key] * 2 * level / 100) + 5
+                self.actStats[key] = np.floor(self.baseStats[key] * 2 * level / 100) + 5
 
 
 
