@@ -33,6 +33,7 @@ class Battle(State):
                                         moves=random.choices(rnd_line['possible_moves'].iloc[0], k=2))
         self.selvaggioPokemon.levelUp(random.randint(1, 20))
         trainerPokemon = self.trainer.pokemon_list[0]
+        self.hps_within_battle.append(trainerPokemon.actStats['hp'])
         effectiveness = args[1]
         #print('a wild ' + self.selvaggioPokemon.name + ' has appeared')
 
