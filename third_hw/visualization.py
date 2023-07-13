@@ -158,7 +158,7 @@ def errorbar_chart(names, means,stds, pkmName):
 
 
 ### main
-pickle_in = open("pokemon_game_results2.p", "rb")
+pickle_in = open("pokemon_game_results.p", "rb")
 data = pickle.load(pickle_in)
 
 # 1. lineplot
