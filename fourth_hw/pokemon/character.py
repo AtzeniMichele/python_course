@@ -28,6 +28,7 @@ class Pokemon:
                 ## se arriva a 0? rip 
                 if defender.current_hp <= 0:
                     #print('The attack hits ' + str(damage) + ', ' + defender.name + ' is defeated!')
+                    defender.current_hp = 0
                     return False, 0, damage
                 else:
                     #print('The attack hits ' + str(damage) + ', ' + defender.name + ' current hps are:' + str(
