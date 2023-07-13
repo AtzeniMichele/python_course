@@ -124,8 +124,8 @@ def main():
     # machine.eval_current()
     # # machine.draw()
 
-    while nGame < 2:
-        print('newGame!')
+    while nGame < 1000:
+        print('-------------newGame! ' + str(nGame) + "---------------")
 
         forward = True
         # init machine
@@ -153,7 +153,7 @@ def main():
         machine.set_start_state(cc)
         machine.initialize()
 
-        machine.draw()
+        #machine.draw()
         continueGame = True
 
         # create character
@@ -169,7 +169,7 @@ def main():
 
             story.trainer.pokemon_list[0] = starter
             nBattles = 0
-            while nBattles < 5:
+            while nBattles < 150:
 
                 # actions
                 action_input = ['Go to pokemon store', 'Go to pokemon center', 'Explore', 'Exit']
@@ -208,13 +208,17 @@ def main():
                         results.append({
                             "n_game": nGame,
                             "starter": starter.name,
+                            "starter_level": starter.level,
+                            "starter_types": starter.types,
                             "nbattle": nBattles,
                             "defeated": battle.defeated,
                             "enc_pkm": battle.selvaggioPokemon.name,
+                            "enc_pkm_level": battle.selvaggioPokemon.level,
+                            "enc_pkm_types": battle.selvaggioPokemon.types,
                             "nturn": battle.n_turn,
-                            "hps_within_battle":battle.hps_within_battle,
-                            "damages_within_battle":battle.damages_within_battle,
-                            "moves_within_battle":battle.moves_within_battle,
+                            "hps_within_battle":battle.hps_within_battle, # selvaggio pokemon
+                            "damages_within_battle":battle.damages_within_battle, # trainer pokemon
+                            "moves_within_battle":battle.moves_within_battle, # trainer pokemon
                             "hp_perc": battle.trainer.pokemon_list[0].current_hp /
                                        battle.trainer.pokemon_list[0].actStats['hp'] * 100
                         })

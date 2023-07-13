@@ -2,7 +2,7 @@ import json
 
 def json_handler(file_name):
     dictionary = dict()
-    with open('json_files/' + file_name + '.json','r') as file:
+    with open('json_files/' + file_name + '.json','r', encoding="utf8") as file:
         for line in file:
             p = json.loads(line)
             dictionary[p['name']] = p
