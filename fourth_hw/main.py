@@ -13,11 +13,11 @@ def main():
     # game init
 
     ## moves:
-    moves_df = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/moves.json', lines=True)
+    moves_df = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/moves.json', lines=True)
     moves_df = moves_df.dropna(subset=['name', 'type', 'category', 'power', 'accuracy', 'pp'])
 
     ## pokemons:
-    pokemons_df = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/pokemons.json',
+    pokemons_df = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/pokemons.json',
                                lines=True)
 
     ##filtering moves
@@ -34,7 +34,7 @@ def main():
 
     ## effectiveness:
     effectiveness_df = pd.read_json(
-        '/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/type_effectiveness.json', lines=True)
+        'C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/type_effectiveness.json', lines=True)
     #
     # ## moves
     # moves_dict = json_handler('moves')
@@ -216,7 +216,7 @@ def main():
                             "enc_pkm_level": battle.selvaggioPokemon.level,
                             "enc_pkm_types": battle.selvaggioPokemon.types,
                             "nturn": battle.n_turn,
-                            "hps_within_battle":battle.hps_within_battle, # selvaggio pokemon
+                            "hps_within_battle":battle.hps_within_battle, # trainer pokemon
                             "damages_within_battle":battle.damages_within_battle, # trainer pokemon
                             "moves_within_battle":battle.moves_within_battle, # trainer pokemon
                             "hp_perc": battle.trainer.pokemon_list[0].current_hp /

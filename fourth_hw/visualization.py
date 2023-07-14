@@ -14,10 +14,7 @@ def divide_df(data):
 def double_converter(data, max):
     floats = []
     for _ ,line in data.iterrows():
-        if line[0][0]=='':
-            tmp = [100.0]
-        else:
-            tmp = [float(x) for x in line[0]]
+        tmp = [float(x) for x in line[0]]
 
         if max - len(tmp) > 0:
             zeros = np.zeros(max - len(tmp)).tolist()
@@ -66,15 +63,15 @@ def pie_plot(data):
     plt.show()
     return plt
 
-pokemonsDf = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/pokemons.json', lines=True, encoding="utf8")
+pokemonsDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/pokemons.json', lines=True, encoding="utf8")
 #print(pokemonsDf)
-movesDf = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/moves.json', lines=True, encoding="utf8")
+movesDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/moves.json', lines=True, encoding="utf8")
 #print(movesDf)
-effectivenessDf = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/type_effectiveness.json', lines=True, encoding="utf8")
+effectivenessDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/type_effectiveness.json', lines=True, encoding="utf8")
 #print(effectivenessDf)
 
 # load the data
-df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fourth_hw/PokemonResult.csv')
+df = pd.read_csv('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/PokemonResult.csv')
 
 
 # 1. Simple plot
