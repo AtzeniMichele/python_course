@@ -15,11 +15,11 @@ def double_converter(data, max):
     floats = []
     for _ ,line in data.iterrows():
         tmp = [float(x) for x in line[0]]
-
-        if max - len(tmp) > 0:
-            zeros = np.zeros(max - len(tmp)).tolist()
-            tmp.extend(zeros)
-        floats.append(tmp)
+        if (len(tmp) == 32):
+            if max - len(tmp) > 0:
+                zeros = np.zeros(max - len(tmp)).tolist()
+                tmp.extend(zeros)
+            floats.append(tmp)
     return floats
 
 def simple_plot(data):
@@ -63,21 +63,33 @@ def pie_plot(data):
     plt.show()
     return plt
 
-pokemonsDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/pokemons.json', lines=True, encoding="utf8")
+# pokemonsDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/pokemons.json', lines=True, encoding="utf8")
+# #print(pokemonsDf)
+# movesDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/moves.json', lines=True, encoding="utf8")
+# #print(movesDf)
+# effectivenessDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/type_effectiveness.json', lines=True, encoding="utf8")
+# #print(effectivenessDf)
+#
+# # load the data
+# df = pd.read_csv('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/PokemonResult.csv')
+pokemonsDf = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/pokemons.json', lines=True, encoding="utf8")
+
 #print(pokemonsDf)
-movesDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/moves.json', lines=True, encoding="utf8")
+movesDf = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/moves.json', lines=True, encoding="utf8")
+
 #print(movesDf)
-effectivenessDf = pd.read_json('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/json_files/type_effectiveness.json', lines=True, encoding="utf8")
+effectivenessDf = pd.read_json('/Users/micheleatzeni/Desktop/python course/fourth_hw/json_files/type_effectiveness.json', lines=True, encoding="utf8")
+
 #print(effectivenessDf)
 
 # load the data
-df = pd.read_csv('C:/Users/pelleli37768/OneDrive - Università degli Studi di Padova/DOTTORATO/Corsi dottorato/Python/python_course/fourth_hw/PokemonResult.csv')
+df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fourth_hw/PokemonResult.csv')
 
 
 # 1. Simple plot
 ans = pd.DataFrame(df['hps_within_battle'])
 refactored_type = ans.applymap(clean_up_df).applymap(divide_df)
-max_nturn = df['nturn'].max()
+max_nturn = df['nturn'].max() + 1
 d_converted = double_converter(refactored_type, max_nturn)
 new_data = np.array(d_converted)
 simple_plot(new_data)
