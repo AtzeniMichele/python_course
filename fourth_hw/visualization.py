@@ -108,6 +108,7 @@ def createLevel(data):
         myList = ''.join(damagesList).replace('[', '').replace(']', ', ').split(', ')
         doubleDamage = [float(x) for x in myList[0:-1]]
         res[key] = np.mean(doubleDamage)
+    return res
 
 def createMatrixImage(data, tipi):
     length_types = len(tipi.index.values.tolist())
@@ -170,46 +171,52 @@ df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fourth_hw/PokemonRe
 # d_converted = double_converter(refactored_type, max_nturn)
 # new_data = np.array(d_converted)
 # simple_plot(new_data)
-
-
-# 2. Pie Plot
-# Bulbasaur
+#
+#
+# # 2. Pie Plot
+# # Bulbasaur
 # pieplot_data1 = preprocessing_pie_plot('bulbasaur', df)
 # pie_plot(pieplot_data1, 'Bulbasaur')
-
+#
 #
 # # Charmander
 # pieplot_data2 = preprocessing_pie_plot('charmander', df)
 # pie_plot(pieplot_data2, 'Charmander')
-
+#
 #
 # # Squirtle
 # pieplot_data3 = preprocessing_pie_plot('squirtle', df)
 # pie_plot(pieplot_data3, 'Squirtle')
-
-# 2.2 pie plot
-tipiRes = df['enc_pkm_types'].value_counts()
-tipi = pokemonsDf['types'].value_counts()
+#
+# # 2.2 pie plot
+# tipiRes = df['enc_pkm_types'].value_counts()
+# tipi = pokemonsDf['types'].value_counts()
 # pie_plot2(tipi, tipiRes)
 
 
 # 3. Bar chart
 dfDict = df.to_dict('records')
+
 bulbasaur = list(filter(lambda starter: starter['starter'] == 'bulbasaur', dfDict))
-matrix, types = createMatrixImage(bulbasaur, tipiRes)
-imagePlot(matrix, types)
-# b_res = createLevel(bulbasaur)
-# bar_chart(b_res)
-#
-# charmander = list(filter(lambda starter: starter['starter'] == 'charmander', dfDict))
-# c_res = createLevel(charmander)
-# bar_chart(c_res)
-#
-# squirtle = list(filter(lambda starter: starter['starter'] == 'squirtle', dfDict))
-# s_res = createLevel(squirtle)
-# bar_chart(s_res)
+b_res = createLevel(bulbasaur)
+bar_chart(b_res)
+
+charmander = list(filter(lambda starter: starter['starter'] == 'charmander', dfDict))
+c_res = createLevel(charmander)
+bar_chart(c_res)
+
+squirtle = list(filter(lambda starter: starter['starter'] == 'squirtle', dfDict))
+s_res = createLevel(squirtle)
+bar_chart(s_res)
 
 # 4. Image chart
+# matrix, types = createMatrixImage(bulbasaur, tipiRes)
+# imagePlot(matrix, types)
 
-print('')
+# Cmatrix, Ctypes = createMatrixImage(charmander, tipiRes)
+# imagePlot(Cmatrix, Ctypes)
+#
+# Smatrix, Stypes = createMatrixImage(squirtle, tipiRes)
+# imagePlot(Smatrix, Stypes)
+
 
