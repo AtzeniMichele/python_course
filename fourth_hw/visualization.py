@@ -44,6 +44,7 @@ def simple_plot(data):
     fig, ax = plt.subplots()
     ax.plot(x, y, color='C1')
     plt.fill_between(x, yerr0, yerr1, color='C0', alpha=0.5)
+    plt.title("Simple plot: Average (std) reduction of the percentage player's pokemon")
     plt.show()
 
 
@@ -69,22 +70,23 @@ def preprocessing_pie_plot(pkm_name, input_data):
 def pie_plot(data, name):
     plt.figure()
     plt.pie(data.values(), labels=data.keys(), autopct='%1.1f%%')
-    plt.title(name)
+    plt.title("Pie Plot: percentage of times each attack was used for " + name)
     plt.show()
 
 
 def pie_plot2(dataJson, dataRes):
     fig, ax = plt.subplots(1, 2, figsize=(15, 10))
     ax[0].pie(dataJson.values, labels=dataJson.index.values.tolist(), autopct='%1.1f%%')
-    ax[0].set_title('Json file types')
+    ax[0].set_title('Pie Plot: distribution of pokemon types in Json file')
     ax[1].pie(dataRes.values, labels=dataRes.index.values.tolist(), autopct='%1.1f%%')
-    ax[1].set_title('Results file types')
+    ax[1].set_title('Pie Plot: distribution of pokemon types in Results file')
     plt.show()
 
 
-def bar_chart(data):
+def bar_chart(data, name):
     plt.figure()
     plt.bar(data.keys(), data.values())
+    plt.title("Bar chart: average damage grouped by pokemon level of " + name)
     plt.show()
 
 
@@ -128,12 +130,13 @@ def createMatrixImage(data, tipi):
         types.append(key)
     return matrix, types
 
-def imagePlot(data, types):
+def imagePlot(data, types, name):
     plt.subplots(1, 1, figsize=(10, 10))
     plt.imshow(data, cmap='jet')
     plt.xticks(np.arange(0,20), np.arange(1,21))
     plt.yticks(np.arange(0, len(types)), types)
     plt.colorbar()  # add the colorbar
+    plt.title("Image chart: % of victories as a function of enemy's type and level for " + name)
     plt.show()
 
 
@@ -165,33 +168,33 @@ effectivenessDf = pd.read_json(
 df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fourth_hw/PokemonResult.csv')
 
 # 1. Simple plot
-# ans = pd.DataFrame(df['hps_within_battle'])
-# refactored_type = ans.applymap(clean_up_df).applymap(divide_df)
-# max_nturn = df['nturn'].max() + 1
-# d_converted = double_converter(refactored_type, max_nturn)
-# new_data = np.array(d_converted)
-# simple_plot(new_data)
-#
-#
-# # 2. Pie Plot
-# # Bulbasaur
-# pieplot_data1 = preprocessing_pie_plot('bulbasaur', df)
-# pie_plot(pieplot_data1, 'Bulbasaur')
-#
-#
-# # Charmander
-# pieplot_data2 = preprocessing_pie_plot('charmander', df)
-# pie_plot(pieplot_data2, 'Charmander')
-#
-#
-# # Squirtle
-# pieplot_data3 = preprocessing_pie_plot('squirtle', df)
-# pie_plot(pieplot_data3, 'Squirtle')
-#
-# # 2.2 pie plot
-# tipiRes = df['enc_pkm_types'].value_counts()
-# tipi = pokemonsDf['types'].value_counts()
-# pie_plot2(tipi, tipiRes)
+ans = pd.DataFrame(df['hps_within_battle'])
+refactored_type = ans.applymap(clean_up_df).applymap(divide_df)
+max_nturn = df['nturn'].max() + 1
+d_converted = double_converter(refactored_type, max_nturn)
+new_data = np.array(d_converted)
+simple_plot(new_data)
+
+
+# 2. Pie Plot
+# Bulbasaur
+pieplot_data1 = preprocessing_pie_plot('bulbasaur', df)
+pie_plot(pieplot_data1, 'Bulbasaur')
+
+
+# Charmander
+pieplot_data2 = preprocessing_pie_plot('charmander', df)
+pie_plot(pieplot_data2, 'Charmander')
+
+
+# Squirtle
+pieplot_data3 = preprocessing_pie_plot('squirtle', df)
+pie_plot(pieplot_data3, 'Squirtle')
+
+# 2.2 pie plot
+tipiRes = df['enc_pkm_types'].value_counts()
+tipi = pokemonsDf['types'].value_counts()
+pie_plot2(tipi, tipiRes)
 
 
 # 3. Bar chart
@@ -199,24 +202,24 @@ dfDict = df.to_dict('records')
 
 bulbasaur = list(filter(lambda starter: starter['starter'] == 'bulbasaur', dfDict))
 b_res = createLevel(bulbasaur)
-bar_chart(b_res)
+bar_chart(b_res, 'Bulbasaur')
 
 charmander = list(filter(lambda starter: starter['starter'] == 'charmander', dfDict))
 c_res = createLevel(charmander)
-bar_chart(c_res)
+bar_chart(c_res, 'Charmander')
 
 squirtle = list(filter(lambda starter: starter['starter'] == 'squirtle', dfDict))
 s_res = createLevel(squirtle)
-bar_chart(s_res)
+bar_chart(s_res, 'Squirtle')
 
 # 4. Image chart
-# matrix, types = createMatrixImage(bulbasaur, tipiRes)
-# imagePlot(matrix, types)
+matrix, types = createMatrixImage(bulbasaur, tipiRes)
+imagePlot(matrix, types, 'Bulbasaur')
 
-# Cmatrix, Ctypes = createMatrixImage(charmander, tipiRes)
-# imagePlot(Cmatrix, Ctypes)
-#
-# Smatrix, Stypes = createMatrixImage(squirtle, tipiRes)
-# imagePlot(Smatrix, Stypes)
+Cmatrix, Ctypes = createMatrixImage(charmander, tipiRes)
+imagePlot(Cmatrix, Ctypes, 'Charmander')
+
+Smatrix, Stypes = createMatrixImage(squirtle, tipiRes)
+imagePlot(Smatrix, Stypes, 'Squirtle')
 
 
