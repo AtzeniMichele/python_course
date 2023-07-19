@@ -24,8 +24,9 @@ class Battle(State):
         ## nuova scelta selvaggio pk:
         pokemons_df = args[0]
         rnd_line = pokemons_df.sample()
+        types = rnd_line['types']
         # self.selvaggioPokemon = random.choice(args[0])
-        self.selvaggioPokemon = Pokemon(name=rnd_line['name'].iloc[0], level=1, types=rnd_line['types'].iloc[0],
+        self.selvaggioPokemon = Pokemon(name=rnd_line['name'].iloc[0], level=1, types=rnd_line['types'].iloc[0].sort(),
                                         baseStats=rnd_line['baseStats'].iloc[0],
                                         actStats=rnd_line['baseStats'].iloc[0],
                                         national_pokedex_number=rnd_line['national_pokedex_number'].iloc[0],
