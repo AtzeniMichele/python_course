@@ -9,7 +9,7 @@ class CreateCharacter(State):
         #trainer = Trainer('', [])
         trainer = args[0]
         # name
-        print('create your pokemon trainer')
+        print('insert your pokemon trainer name:')
         nickname = input()
         trainer.addName(nickname)
         print('Welcome ' + trainer.name)

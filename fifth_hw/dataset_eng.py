@@ -33,25 +33,25 @@ def encoding(df_column, label_prefix=None, column_name=None):
 
 
 # ## Load data
-# df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fifth_hw/data/PokemonResult.csv', delimiter=';')
-# df = df.sample(frac=1).reset_index(drop=True)
-#
-# ## outcome
-# y = df['defeated']
-#
-# ## independent
-# x = df.loc[:, df.columns != 'defeated']
-#
-# variables_to_drop = ['n_game', 'starter', 'nbattle', 'enc_pkm', 'nturn']
-# x = x.drop(variables_to_drop, axis=1)
-#
-#
-# player_one_hot = encoding(x['player_types'], 'player', 'player_types')
-# opponent_one_hot = encoding(x['opponent_types'], 'opponent', 'opponent_types')
-#
-# x = x.drop(['player_types', 'opponent_types'], axis=1)
-#
-# final_x = pd.concat([x, player_one_hot, opponent_one_hot], axis=1, join='inner')
-#
-# final_x.to_csv('RefactoredIndependentPokemonResult.csv', index=False)
-# y.to_csv('RefactoredOutcomePokemonResult.csv', index=False)
+df = pd.read_csv('/Users/micheleatzeni/Desktop/python course/fifth_hw/data/PokemonResult.csv', delimiter=';')
+df = df.sample(frac=1).reset_index(drop=True)
+
+## outcome
+y = df['defeated']
+
+## independent
+x = df.loc[:, df.columns != 'defeated']
+
+variables_to_drop = ['n_game', 'starter', 'nbattle', 'enc_pkm', 'nturn']
+x = x.drop(variables_to_drop, axis=1)
+
+
+player_one_hot = encoding(x['player_types'], 'player', 'player_types')
+opponent_one_hot = encoding(x['opponent_types'], 'opponent', 'opponent_types')
+
+x = x.drop(['player_types', 'opponent_types'], axis=1)
+
+final_x = pd.concat([x, player_one_hot, opponent_one_hot], axis=1, join='inner')
+
+final_x.to_csv('RefactoredIndependentPokemonResult.csv', index=False)
+y.to_csv('RefactoredOutcomePokemonResult.csv', index=False)

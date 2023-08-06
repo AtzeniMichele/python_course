@@ -33,7 +33,6 @@ class Trainer:
 
 
     def addItems(self):
-        # TODO: separare i refill di pozioni e pokeball
         # potions
         self.items['potions'].number = self.items['potions'].max
         self.items['pokeballs'].number = self.items['pokeballs'].max

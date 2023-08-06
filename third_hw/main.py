@@ -187,7 +187,7 @@ def main():
                     # machine.draw()
             continueGame = False
         nGame += 1
-    with open("pokemon_game_results.p", "wb") as fb:
+    with open("pokemon_game_results_final.p", "wb") as fb:
         pickle.dump(results, fb)
     return
 

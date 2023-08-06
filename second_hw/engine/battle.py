@@ -4,6 +4,7 @@ import random
 
 selvaticPokemons = [Rattata(), Pidgey(), Caterpie()]
 
+
 class Battle(State):
     trainer = None
     defeated = False
@@ -36,32 +37,37 @@ class Battle(State):
                     print(i, ':', opt.name)
                 choice = int(input('Choose option:'))
                 trainerPokemon = self.trainer.pokemon_list[choice]
-                self.trainer.pokemon_list[0], self.trainer.pokemon_list[choice] = self.trainer.pokemon_list[choice], self.trainer.pokemon_list[0]
+                self.trainer.pokemon_list[0], self.trainer.pokemon_list[choice] = self.trainer.pokemon_list[choice], \
+                                                                                  self.trainer.pokemon_list[0]
             elif choice == 2:
                 print('Choose one Item:')
                 for i, opt in enumerate(self.trainer.items):
                     print(i, ':', opt)
                 choice = int(input('Choose option:'))
-                if choice == 0 and self.trainer.items['potions'].number >0:
+                if choice == 0 and self.trainer.items['potions'].number > 0:
                     # pozioni
-                    self.trainer.items['potions'].number = self.trainer.items['potions'].number -1
-                    trainerPokemon.current_hp = min(trainerPokemon.current_hp + 20,  trainerPokemon.baseStats['hp'])
-                elif choice == 1 and self.trainer.items['pokeballs'].number >0:
+                    self.trainer.items['potions'].number = self.trainer.items['potions'].number - 1
+                    trainerPokemon.current_hp = min(trainerPokemon.current_hp + 20, trainerPokemon.baseStats['hp'])
+                elif choice == 1 and self.trainer.items['pokeballs'].number > 0:
+
                     self.trainer.items['pokeballs'].number = self.trainer.items['pokeballs'].number - 1
                     catchProbability = 1 - (selvaggioPokemon.current_hp / selvaggioPokemon.baseStats['hp'])
                     if catchProbability > random.random():
+                        print(selvaggioPokemon.name + ' is caught')
                         self.trainer.addPokemon(selvaggioPokemon)
+                        forward = False
+                    else:
+                        print('catch unsuccessful')
             elif choice == 3:
-                 if random.random() > 0.6:
-                     self.trainer.pokemon_list[0] = trainerPokemon
-                     forward = False
+                if random.random() > 0.6:
+                    self.trainer.pokemon_list[0] = trainerPokemon
+                    forward = False
 
             if forward:
                 print('selvatic attacks')
                 forward = selvaggioPokemon.useMove(random.choice(selvaggioPokemon.moves), trainerPokemon)
                 if not forward:
                     self.defeated = True
-
 
     def update(self):
         pass

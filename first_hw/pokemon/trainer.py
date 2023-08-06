@@ -15,7 +15,7 @@ class Trainer:
             elif pokemonName.lower() == 'squirtle':
                 self.pokemon_list.append(Squirtle())
             else: 
-                print('vecchio non esiste')
+                print('does not exist')
 
         else: 
             print('Not enough space in your pokemon list!')

@@ -6,7 +6,7 @@ def main():
 
     trainer = Trainer('', [])
     # name 
-    print('create your pokemon trainer')
+    print('insert the name of your pokemon trainer')
     nickname = input()
     trainer.addName(nickname)
     print('Welcome ' + trainer.name)
@@ -20,22 +20,22 @@ def main():
     pokemon = options[choice]
     trainer.addPokemon(pokemon)
 
-    ## TODO: confrontare velocità per chi attacca per primo 
+
 
     forward = True; 
     defender = Charmander()
 
     while(forward): 
 
-        print('compare un Charmander selvatico')
+        print('a selvatic Charmander appears')
 
-        print('Chooose one Pokemon attacker:')
+        print('Choose your Pokemon attacker:')
         for i, opt in enumerate(trainer.pokemon_list): 
             print(i, ':', opt.name)
         choice = int(input('Choose option:'))
         attacker = trainer.pokemon_list[choice]
 
-        print('Chooose one Pokemon move:')
+        print('Choose one Pokemon move:')
         for i, opt in enumerate(attacker.moves): 
             print(i, ':', opt.name)
         choice = int(input('Choose option:'))
@@ -44,14 +44,14 @@ def main():
 
         ## case 1: 
         # noi attacchiamo 
-        print('trainer attack')
+        print('trainer attacks')
 
         forward = attacker.useMove(move, defender)
         print(str(move.current_pp))
 
         ## case 2: 
         # noi difendiamo 
-        print('defender attack')
+        print('defender attacks')
         forward = defender.useMove(Ember(), attacker)
 
 

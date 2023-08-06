@@ -114,6 +114,7 @@ def simple_plot(result, pkmName):
     plt.figure()
     plt.plot(n_battles, wins, 'o')
     plt.plot(n_battles, np.repeat(result_mean, len(n_battles)))
+    plt.ylim((120, 160))
     plt.title('Simple plot ' + pkmName)
     plt.xlabel('# of games')
     plt.ylabel('# of wins')
@@ -158,7 +159,7 @@ def errorbar_chart(names, means,stds, pkmName):
 
 
 ### main
-pickle_in = open("pokemon_game_results.p", "rb")
+pickle_in = open("pokemon_game_results_final.p", "rb")
 data = pickle.load(pickle_in)
 
 # 1. lineplot

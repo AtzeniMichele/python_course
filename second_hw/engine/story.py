@@ -6,7 +6,6 @@ class Story(State):
 
     def run(self, *args):
         print('We are in the main story!')
-        print(self.trainer.name)
 
     def update(self, choices):
         print(self.choices)

@@ -13,7 +13,6 @@ class Actions(State):
             self.trainer.addItems()
             print('succesfully restored items!')
         elif args[0] == 'Pokemon Center':
-            ## TODO: aggiungere if hps and pps == max
             print('Pokemon Center')
             for pokemon in self.trainer.pokemon_list:
                 pokemon.current_hp = pokemon.baseStats['hp']
@@ -23,7 +22,7 @@ class Actions(State):
                     print('successfully restored ' + move.name + ' pps!')
         elif args[0] == 'Explore':
             rnd = random()
-            success = 1 > 0.8
+            success = rnd > 0.8
             if success:
                 print('success')
                 self.battle = True
